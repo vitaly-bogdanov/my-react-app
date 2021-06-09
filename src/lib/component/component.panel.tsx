@@ -4,19 +4,28 @@ import styled from 'styled-components';
 import { LayoutElement } from '../layout';
 
 export const ComponentPanel: FC = () => (
-  <LayoutElement>
+  <LayoutPanel>
     <Panel>
-      <Head />
-      <Line />
-      <Body />
+      <Content>
+        <Head />
+        <Line />
+        ...
+      </Content>
     </Panel>
-  </LayoutElement>
+  </LayoutPanel>
 );
 
+const LayoutPanel = styled(LayoutElement)`
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 2;
+  grid-column-end: 3;
+`;
+
 const Panel = styled.div`
-  order: 1;
-  transform: translateY(-120px);
   box-shadow: 0 0 15px 10px rgba(122,122,122,0.5);
+  min-height: 680px;
+  background-color: white;
 `;
 
 const Head = styled.div`
@@ -29,7 +38,6 @@ const Line = styled.div`
   background-color: #efefef;
 `;
 
-const Body = styled.div`
-  height: 500px;
-  background-color: white;
+const Content = styled.div`
+  transform: translateY(-120px);
 `;
