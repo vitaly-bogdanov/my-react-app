@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import styled from 'styled-components';
 
 import { LayoutSection } from './layout.section';
-import { ComponentNavBar } from '../component';
+import { ComponentNavBar, ComponentBoxies, ComponentPanel } from '../component';
 import { DESCRIPTION_ROUTE } from '../../core/description';
 import { DELIVERY_AND_PAYMENT_ROUTE } from '../../core/deliveryAndPayment';
 import { WHY_DIVAN_RU_ROUTE } from '../../core/whyDivanRu';
@@ -10,22 +10,29 @@ import { WHY_DIVAN_RU_ROUTE } from '../../core/whyDivanRu';
 export const LayoutPage: FC = ({ children }) => (
   <>
     <header>
-      <EmptyContainer/>
-      <NavbarContainer>
-        <LayoutSection>
+      <LayoutSection>
+        <EmptyContainer/>
+        <NavbarContainer>
           <ComponentNavBar navs={[
             DESCRIPTION_ROUTE,
             DELIVERY_AND_PAYMENT_ROUTE,
             WHY_DIVAN_RU_ROUTE
           ]} />
-        </LayoutSection>
-      </NavbarContainer>
+        </NavbarContainer>
+      </LayoutSection>
     </header>
-    <Main>
-      { children }
-    </Main>
+    <main>
+      <LayoutSection>
+        <ContentContainer>
+          { children }
+          <ComponentPanel />
+        </ContentContainer>
+      </LayoutSection>
+    </main>
     <Footer>
-      
+      <LayoutSection>
+        <ComponentBoxies />
+      </LayoutSection>
     </Footer>
   </>
 );
@@ -39,12 +46,13 @@ const NavbarContainer = styled.div`
   background-color: #ffffff;
 `;
 
-const Main = styled.main`
+const ContentContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  min-height: 700px;
   background-color: #efefef;
 `;
 
 const Footer = styled.footer`
-  height: 400px;
   background-color: #ffffff;
 `;
-
